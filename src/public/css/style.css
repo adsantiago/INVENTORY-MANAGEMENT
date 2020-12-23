@@ -1,0 +1,7 @@
+.my-custom-scrollbar {
+    height: 380px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}

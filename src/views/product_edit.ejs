@@ -1,0 +1,28 @@
+<%- include ('partials/_header')  %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/inventory/<%= product_data.report_id %>/update_product/<%= product_data.id %>" method="post">
+                        <div class="form-group">
+                            <input type="text" name="product" value="<%= product_data.product %>" placeholder="Producto" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="value" value="<%= product_data.value %>" placeholder="Valor" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="quantity" value="<%= product_data.quantity %>" placeholder="Cantidad" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Editar producto
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer')  %>

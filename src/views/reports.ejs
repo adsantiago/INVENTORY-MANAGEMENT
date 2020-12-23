@@ -1,0 +1,55 @@
+<%- include ('partials/_header')  %>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <h3>Reportes <i class="fas fa-clipboard-list"></i></h3>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>n°</th>
+                        <th>Mes</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (reports_data) { %>
+                        <% for (var i=0; i < reports_data.length; i++){ %>
+                            <tr>
+                                <td><%= (i+1) %></td>
+                                <td><%= reports_data[i].month %></td>
+                                <td><%= reports_data[i].description %></td>
+                                <td>
+                                    <a href="/inventory/<%= reports_data[i].id %>" class="btn btn-success">VER</a>
+                                    <a href="/update/<%= reports_data[i].id %>" class="btn btn-warning">EDITAR</a>
+                                    <a href="/delete/<%= reports_data[i].id %>" class="btn btn-danger">ELIMINAR</a>
+                                </td>
+                            </tr>
+                        <%} %>
+                    <%} %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h3>Agregar un reporte <i class="far fa-clipboard"></i></h3>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <input type="text" name="month" placeholder="Mes" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="description" placeholder="Descripción" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            GUARDAR REPORTE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer')  %>

@@ -1,0 +1,70 @@
+<%- include ('partials/_header')  %>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-8">
+                <h3>Productos <i class="fas fa-shopping-cart"></i></h3>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>n°</th>
+                                <th>Producto</th>
+                                <th>Valor</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%  var total=0; %>
+                            <% if (products_data) { %>
+                                <% for (var i=0; i < products_data.length; i++){ %>
+                                    <tr>
+                                        <td><%= (i+1) %></td>
+                                        <td><%= products_data[i].product %></td>
+                                        <td><%= products_data[i].value %></td>
+                                        <td><%= products_data[i].quantity%></td>
+                                        <td><%= products_data[i].quantity * products_data[i].value%></td>
+                                        <% total += products_data[i].quantity * products_data[i].value%>
+                                        <td>
+                                            <a href="<%=id%>/update/<%= products_data[i].id %>" class="btn btn-warning">EDITAR</a>
+                                            <a href="<%=id%>/delete_product/<%= products_data[i].id %>" class="btn btn-danger">ELIMINAR</a>
+                                        </td>
+                                    </tr>
+                                <%} %>
+                            <%} %>
+                        </tbody>
+                    </table>
+                </div>        
+            <div class="card mt-3">
+                <div class="card-body text-center">   
+                    <h3>TOTAL: <%= total %> $</h3>
+                </div>
+            </div>
+            </div>
+            <div class="colmd-4 ml-2">
+                <h3>Agregar un producto <i class="fas fa-plus-circle"></i></h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/inventory/<%= id %>/add_product" method="post">
+                            <div class="form-group">
+                                <input type="text" name="product" placeholder="Producto" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="value" placeholder="Valor" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="quantity" placeholder="Cantidad" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Guardar producto
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<%- include ('partials/_footer')  %>
